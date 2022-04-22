@@ -2,9 +2,7 @@
  *
  */
 export const supportedVersions: { [key: string]: Array<string> } = {
-  zora: ['20210101', '20210604'],
-  catalog: ['20210202'],
-  amulet: ['20210221']
+  stacks: ['20220422'],
 }
 
 /**
@@ -13,15 +11,8 @@ export const supportedVersions: { [key: string]: Array<string> } = {
 export const supportedVersionsTypeMapping: {
   [key: string]: { [key: string]: string }
 } = {
-  zora: {
-    '20210101': 'Zora20210101',
-    '20210604': 'Zora20210604'
-  },
-  catalog: {
-    '20210202': 'Catalog20210202'
-  },
-  amulet: {
-    '20210221': 'Amulet20210221'
+  stacks: {
+    '20220422': 'Stacks20220422',
   }
 }
 

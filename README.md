@@ -2,11 +2,13 @@
 
 ## Overview
 
-The Zora Protocol requires media that is minted on its smart contracts contain a URI pointing to its metadata.
+The SIP-009 requires media that is minted on its smart contracts contain a URI pointing to its metadata.
 
-The Zora Protocol maintains zero opinion about the structure of that metadata. It is explicitly not enforceable at the blockchain level.
+The SIP-009 maintains zero opinion about the structure of that metadata. It is explicitly not enforceable at the blockchain level.
 
-As such, this repository will serve as the source of truth of community supported metadata schemas described by JSON Schema, and will generate Types, Parsers, Generators, and Validators that will be served through the [Zora Development Kit (ZDK)](https://github.com/ourzora/zdk)
+However, the SIP-016 defines a json schema and more properties to standardize the metadata.
+
+This repository contains tools to for the SIP-016 JSON Schema, and will generate Types, Parsers, Generators, and Validators.stac
 
 ## Usage
 
@@ -16,12 +18,12 @@ Given a schema version and some nonformatted json it generates a valid, minified
 
 ```typescript
 const metadata = {
-  version: 'zora-20210101',
+  version: 'stacks-20220422',
   name: randomName,
   description: randomDescription,
-  mimeType: mimeType,
+  image: imageUrl
 }
-const generator = new Generator(metadata.version)
+const generator = new Generator(metadata.sip)
 const minified = generator.generate(metadata)
 ```
 
@@ -29,13 +31,13 @@ const minified = generator.generate(metadata)
 
 ```typescript
 const metadata = {
-  version: 'zora-20210101',
+  version: 'stacks-20220422',
   name: randomName,
   description: randomDescription,
-  mimeType: mimeType,
+  image: imageUrl
 }
 
-const validator = new Validator(metadata.version)
+const validator = new Validator(metadata.sip)
 const validated = validator.validate(metadata)
 ```
 
@@ -44,14 +46,14 @@ const validated = validator.validate(metadata)
 ```typescript
 const json = `
   {
-    "version": "zora-20210101",
+    "version": "stacks-20220422",
     "name": "randomName",
     "description": "randomDescription",
-    "mimeType": "mimeType"
+    "image": "image"
   }
 `
 
-const parser = new Parser('zora-20210101')
+const parser = new Parser('stacks-20220422')
 const parsed =  parser.parse(json)
 ```
 
@@ -62,7 +64,7 @@ const parsed =  parser.parse(json)
 ## Define a New Schema
 
 To define a new schema version, locate the directory of your project's name in `schemas/`. If a directory does not already exist create one. 
-Within the project directory create a new file with the desired calendar version as the file name example: `schemas/zora/20210101.json` 
+Within the project directory create a new file with the desired calendar version as the file name example: `schemas/stacks/20220422.json` 
 
 * Define the schema according to JSON Schema specification.
 * Write some tests in the `schema.tests.ts` file.
